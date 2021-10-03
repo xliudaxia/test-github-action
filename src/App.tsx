@@ -2,6 +2,7 @@ import "./App.css";
 import { Button, message } from "antd";
 import { useCallback } from "react";
 import TodoHeader from "./components/todo-header";
+import logo from "./logo.svg";
 
 function App() {
   const showMessage = useCallback(() => {
@@ -18,7 +19,12 @@ function App() {
         这是一个按钮
       </Button>
       <div>
-        <TodoHeader title="这是一个标题" />
+        <TodoHeader
+          title="这是一个标题"
+          containerStyle={{ border: "1px solid blue" }}
+          isFinish={true}
+          iconUrl={logo}
+        />
       </div>
     </div>
   );
