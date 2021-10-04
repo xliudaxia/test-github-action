@@ -1,4 +1,10 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  act,
+} from "@testing-library/react";
 import TodoHeader from "../todo-header";
 import { CSSProperties } from "react";
 
@@ -109,5 +115,29 @@ describe("测试TodoHeader组件", () => {
     expect(mockClickFn).toBeCalled();
     expect(mockClickFn).toBeCalledTimes(1);
     expect(mockClickFn).toBeCalledWith(title);
+  });
+
+  it(`正确响应onInit事件`, async () => {
+    const title = "标题";
+    const newTitle = "新的标题";
+    const mockInitFn = jest.fn(() => Promise.resolve(newTitle));
+    await act(async () => {
+      render(<TodoHeader title={title} onInit={mockInitFn} />);
+    });
+    const element = screen.queryByText(newTitle);
+    expect(element).not.toBeNull();
+  });
+
+  it(`正确处理Input change 事件`, async () => {
+    const title = "标题";
+    const newTitle = "新的标题";
+    const { container } = render(<TodoHeader title={title} />);
+    const inputElement = container.querySelector("input");
+    expect(inputElement).not.toBeNull();
+    await act(async () => {
+      fireEvent.change(inputElement!, { target: { value: newTitle } });
+    });
+    const element = screen.queryByText(newTitle);
+    expect(element).not.toBeNull();
   });
 });
