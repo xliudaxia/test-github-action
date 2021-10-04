@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import TodoHeader from "../todo-header";
 import { CSSProperties } from "react";
 
@@ -97,5 +97,17 @@ describe("测试TodoHeader组件", () => {
     );
     const childElement = getByTestId(id);
     expect(childElement).toHaveTextContent(text);
+  });
+
+  it(`正确响应onClickTitle的事件`, () => {
+    const mockClickFn = jest.fn();
+    const title = "标题";
+    const { getByText } = render(
+      <TodoHeader title={title} onClickTitle={mockClickFn} />
+    );
+    fireEvent.click(getByText(title));
+    expect(mockClickFn).toBeCalled();
+    expect(mockClickFn).toBeCalledTimes(1);
+    expect(mockClickFn).toBeCalledWith(title);
   });
 });

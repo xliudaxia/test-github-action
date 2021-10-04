@@ -9,6 +9,10 @@ function App() {
     message.info(`展示一个提示`);
   }, []);
 
+  const onClickTitle = useCallback((title: string) => {
+    window.alert(title);
+  }, []);
+
   return (
     <div className="App">
       <Button
@@ -24,6 +28,7 @@ function App() {
           containerStyle={{ border: "1px solid blue" }}
           isFinish={true}
           iconUrl={logo}
+          onClickTitle={onClickTitle}
         />
       </div>
     </div>
