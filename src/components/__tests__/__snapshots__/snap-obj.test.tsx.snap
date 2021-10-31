@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试定制对象的快照内容 正确匹配快照 1`] = `
+Object {
+  "age": 18,
+  "name": "eason",
+}
+`;

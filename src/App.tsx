@@ -3,6 +3,7 @@ import { Button, message } from "antd";
 import { useCallback } from "react";
 import TodoHeader from "./components/todo-header";
 import logo from "./logo.svg";
+import TodoContent from "./components/todo-content";
 
 function App() {
   const showMessage = useCallback(() => {
@@ -30,6 +31,7 @@ function App() {
           iconUrl={logo}
           onClickTitle={onClickTitle}
         />
+        <TodoContent title="这是标题" content="这是一个很长很长的内容呀..." />
       </div>
     </div>
   );
