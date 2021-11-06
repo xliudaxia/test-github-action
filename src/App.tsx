@@ -4,6 +4,8 @@ import { useCallback } from "react";
 import TodoHeader from "./components/todo-header";
 import logo from "./logo.svg";
 import TodoContent from "./components/todo-content";
+import TodoTimer from "./components/todo-timer";
+import TodoInterval from "./components/todo-interval";
 
 function App() {
   const showMessage = useCallback(() => {
@@ -32,6 +34,10 @@ function App() {
           onClickTitle={onClickTitle}
         />
         <TodoContent title="这是标题" content="这是一个很长很长的内容呀..." />
+      </div>
+      <div>
+        <TodoTimer />
+        <TodoInterval callback={() => console.log(`运行了callback`)} />
       </div>
     </div>
   );
