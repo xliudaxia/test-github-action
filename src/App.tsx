@@ -4,8 +4,8 @@ import { useCallback } from "react";
 import TodoHeader from "./components/todo-header";
 import logo from "./logo.svg";
 import TodoContent from "./components/todo-content";
-import TodoTimer from "./components/todo-timer";
-import TodoInterval from "./components/todo-interval";
+import TodoReport from "./components/todo-report";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
   const showMessage = useCallback(() => {
@@ -18,27 +18,41 @@ function App() {
 
   return (
     <div className="App">
-      <Button
-        type="primary"
-        onClick={showMessage}
-        style={{ visibility: "hidden" }}
-      >
-        这是一个按钮
-      </Button>
-      <div>
-        <TodoHeader
-          title="这是一个标题"
-          containerStyle={{ border: "1px solid blue" }}
-          isFinish={true}
-          iconUrl={logo}
-          onClickTitle={onClickTitle}
-        />
-        <TodoContent title="这是标题" content="这是一个很长很长的内容呀..." />
-      </div>
-      <div>
-        <TodoTimer />
-        <TodoInterval callback={() => console.log(`运行了callback`)} />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact={true} path="/">
+            <Button
+              type="primary"
+              onClick={showMessage}
+              style={{ visibility: "hidden" }}
+            >
+              这是一个按钮
+            </Button>
+            <div>
+              <TodoHeader
+                title="这是一个标题"
+                containerStyle={{ border: "1px solid blue" }}
+                isFinish={true}
+                iconUrl={logo}
+                onClickTitle={onClickTitle}
+              />
+              <TodoContent
+                title="这是标题"
+                content="这是一个很长很长的内容呀..."
+              />
+            </div>
+          </Route>
+          <Route exact={true} path="/report/:reportId">
+            <div>
+              <TodoReport
+                title="这是一个标题"
+                extraMsg="补充信息"
+                content="这是一个内容"
+              />
+            </div>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
