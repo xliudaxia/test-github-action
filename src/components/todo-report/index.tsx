@@ -1,6 +1,5 @@
 import { Tooltip, Card } from "antd";
 import { useParams } from "react-router-dom";
-import { CounterContextWrapper } from "../../context/counter-context";
 
 interface TodoReportProp {
   title: string;
@@ -21,10 +20,8 @@ function CardHeader(props: Pick<TodoReportProp, "title" | "extraMsg">) {
 
 export default function TodoReport({ content, ...rest }: TodoReportProp) {
   return (
-    <CounterContextWrapper>
-      <Card title={<CardHeader {...rest} />} style={{ width: 400 }}>
-        <span>{content}</span>
-      </Card>
-    </CounterContextWrapper>
+    <Card title={<CardHeader {...rest} />} style={{ width: 400 }}>
+      <span>{content}</span>
+    </Card>
   );
 }
