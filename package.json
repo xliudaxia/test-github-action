@@ -63,7 +63,7 @@
       }
     },
     "coverageReporters": [
-      "text"
+      "json", "lcov", "text", "clover", "cobertura"
     ]
   }
 }
