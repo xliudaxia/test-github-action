@@ -61,9 +61,6 @@
         "lines": 90,
         "statements": 90
       }
-    },
-    "coverageReporters": [
-      "json", "lcov", "text", "clover", "cobertura"
-    ]
+    }
   }
 }
